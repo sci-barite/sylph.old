@@ -1,0 +1,15 @@
+{
+  "name": "chrome-ext",
+  "version": "1.0.0",
+  "description": "First Chrome extension",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/chrome": "^0.0.196",
+    "types": "^0.1.1"
+  }
+}
