@@ -27,7 +27,7 @@ function Sift() {
                                 case "Influ": case "Group":  case "Inter": i=i+16; break;
                                 case "Engli": ENGLISH = strings[j+i+1]; i=i+16; break;
                                 default:
-                                    if (skills.indexOf(strings[j+i]) == -1) { skills.push(strings[j+i]);
+                                    if (skills.indexOf(strings[j+i]) == -1) skills.push(strings[j+i]);
                                     break;
                             }
                         }
