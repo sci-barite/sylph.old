@@ -15,17 +15,17 @@ function Sift() {
     var skills = [];
     strings.forEach(function(entry,j) {
         if (strings[j]?.startsWith('Skil')) {
-            switch (strings[j]?.charAt(4)+strings[j]?.charAt(5)+strings[j]?.charAt(6)) {
+            switch (strings[j]?.substring(4,6)) {
                 case 'ls:' :
                     if (skills.indexOf(strings[j]?.substring(8)) == -1) skills.push(strings[j]?.substring(8));
                     break;
                 case 'ls': 
                     for (var i=1; i<16; i++) {
                         if (!parseInt(strings[j+i]?.charAt(0)) && strings[j+i]?.length < 35) {
-                            switch (strings[j+i]?.charAt(0)+strings[j+i]?.charAt(1)+strings[j+i]?.charAt(2)+strings[j+i]?.charAt(3)) {
-                                case "Skil": case "Pass": case "Endo": case "Rece": case "Comp": case "Scho": case 'Lang': break;
-                                case "Infl": case "Grou":  case "Inte": i=i+10; break;
-                                case "Engl": ENGLISH = strings[j+i+1]; i=i+10; break;
+                            switch (strings[j+i]?.substring(0,4)) {
+                                case "Skill": case "Passe": case "Endor": case "Recei": case "Compl": case "Schoo": case 'Langu': break;
+                                case "Influ": case "Group":  case "Inter": i=i+10; break;
+                                case "Engli": ENGLISH = strings[j+i+1]; i=i+10; break;
                                 default:
                                     if (skills.indexOf(strings[j+i]) == -1) skills.push(strings[j+i]);
                                     break;
