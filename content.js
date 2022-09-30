@@ -20,12 +20,12 @@ function Sift() {
                     if (skills.indexOf(strings[j]?.substring(8)) == -1) skills.push(strings[j]?.substring(8));
                     break;
                 case 'ls': 
-                    for (i=1; i<16; i++) {
+                    for (var i=1; i<16; i++) {
                         if (!parseInt(strings[j+i]?.charAt(0))) {
                             switch (strings[j+i]?.charAt(0)+strings[j+i]?.charAt(1)+strings[j+i]?.charAt(2)) {
-                                case "Ski": case "End": case "Pas": case "Int": case "Rec": case "Com": case "Sch": case 'Lan': break;
+                                case "Ski": case "Inf": case "Gro": case "End": case "Pas": case "Int": case "Rec": case "Com": case "Sch": case 'Lan': break;
                                 case "Eng": ENGLISH = strings[j+i+1]; j=j+i+1; break;
-                                default: 
+                                default:
                                     if (skills.indexOf(strings[j+i]) == -1) skills.push(strings[j+i]);
                                     break;
                             }
