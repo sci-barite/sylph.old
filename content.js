@@ -4,25 +4,23 @@ var ENGLISH = 'NA';
 function Sift() {
     var strings = [];
     document.querySelectorAll('[aria-hidden="true"]').forEach(item => {item.removeAttribute('aria-hidden');});
-    for (i=0; i<128; i++) {
-        if (document.querySelectorAll(".visually-hidden")[i]?.innerText.includes("Skills")) {
-            for (var j=i; j<(i+15); j++) {
-                strings.push(document.querySelectorAll(".visually-hidden")[j]?.innerText);
-            }
-            i=i+j;
-        }
-    }
-    for (i=0; i<512; i++) {
-        if (document.querySelectorAll(".visually-hidden")[i]?.innerText.includes("Languages")) {
-            for (var j=i; j<(i+15); j++) {
-                strings.push(document.querySelectorAll(".visually-hidden")[j]?.innerText);
+    alert(document.querySelectorAll(".visually-hidden").length);
+    for (i=0; i<document.querySelectorAll(".visually-hidden").length; i++) {
+        if (document.querySelectorAll(".visually-hidden")[i]?.innerText.startsWith("Skills")) {
+            for (var y=i; y<(i+12); y++) {
+                strings.push(document.querySelectorAll(".visually-hidden")[y]?.innerText);
             }
         }
-        break;
+        if (document.querySelectorAll(".visually-hidden")[i]?.innerText.startsWith("Languages")) {
+            for (var z=i; z<(i+6); z++) {
+                strings.push(document.querySelectorAll(".visually-hidden")[z]?.innerText);
+            }
+        }
     }
+    alert(strings.toString());
     var skills = [];
     strings.forEach(function(entry,j) {
-        if (strings[j]?.startsWith('Skil')) {
+        if (strings[j]?.startsWith('Skil') || strings[j]?.startsWith('Engl')) {
             switch (strings[j]?.substring(4,7)) {
                 case 'ls:' :
                     let subskills = strings[j]?.substring(8).split(" · ");
@@ -31,7 +29,7 @@ function Sift() {
                     });
                     break;
                 case 'ls': 
-                    for (var i=1; i<15; i++) {
+                    for (var i=1; i<12; i++) {
                         if (!parseInt(strings[j+i]?.charAt(0)) && strings[j+i]?.length < 35) {
                             switch (strings[j+i]?.substring(0,5)) {
                                 case "Skill": case "Passe": case "Endor": case "Compl": case "Schoo": case 'Langu': case "Unive": break;
@@ -45,6 +43,7 @@ function Sift() {
                         }
                     }
                     break;
+                case 'ish' : ENGLISH = strings[j+1]; break;
             }
         }
     });
