@@ -12,7 +12,7 @@ function Sift() {
             i=i+j;
         }
     }
-    for (i=0; i<256; i++) {
+    for (i=0; i<512; i++) {
         if (document.querySelectorAll(".visually-hidden")[i]?.innerText.includes("Languages")) {
             for (var j=i; j<(i+15); j++) {
                 strings.push(document.querySelectorAll(".visually-hidden")[j]?.innerText);
