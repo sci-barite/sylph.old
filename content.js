@@ -19,18 +19,18 @@ function Sift() {
                 case 'ls:' :
                     let subskills = strings[j]?.substring(8).split(" · ");
                     subskills.forEach(function(entry,k) {
-                        if (skills.indexOf(subskills[k]) == -1) skills.push(subskills[k]);
+                        if (skills.indexOf(subskills[k]) == -1) skills.push(' '+subskills[k]);
                     });
                     break;
                 case 'ls': 
                     for (var i=1; i<16; i++) {
                         if (!parseInt(strings[j+i]?.charAt(0)) && strings[j+i]?.length < 35) {
                             switch (strings[j+i]?.substring(0,5)) {
-                                case "Skill": case "Passe": case "Endor": case "Compl": case "Schoo": case 'Langu': break;
+                                case "Skill": case "Passe": case "Endor": case "Compl": case "Schoo": case 'Langu': case "Unive": break;
                                 case "Influ": case "Group":  case "Inter": case "Recom": i=i+16; break;
                                 case "Engli": ENGLISH = strings[j+i+1]; i=i+16; break;
                                 default:
-                                    if (skills.indexOf(strings[j+i]) == -1) skills.push(strings[j+i]);
+                                    if (skills.indexOf(strings[j+i]) == -1) skills.push(' '+strings[j+i]);
                                     break;
                             }
                         }
