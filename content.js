@@ -23,7 +23,7 @@ function Sift() {
                     for (var i=1; i<16; i++) {
                         if (!parseInt(strings[j+i]?.charAt(0)) && strings[j+i]?.length < 35) {
                             switch (strings[j+i]?.substring(0,5)) {
-                                case "Skill": case "Passe": case "Endor": case "Recei": case "Compl": case "Schoo": case 'Langu': break;
+                                case "Skill": case "Passe": case "Endor": case "Recom": case "Compl": case "Schoo": case 'Langu': break;
                                 case "Influ": case "Group":  case "Inter": i=i+16; break;
                                 case "Engli": ENGLISH = strings[j+i+1]; i=i+16; break;
                                 default:
