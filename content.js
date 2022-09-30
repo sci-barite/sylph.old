@@ -6,7 +6,7 @@ function Sift() {
     document.querySelectorAll('[aria-hidden="true"]').forEach(item => {item.removeAttribute('aria-hidden');});
     for (i=0; i<128; i++) {
         if (document.querySelectorAll(".visually-hidden")[i]?.innerText.includes("Skills")) {
-            for (var j=i; j<(i+16); j++) {
+            for (var j=i; j<(i+20); j++) {
                 strings.push(document.querySelectorAll(".visually-hidden")[j]?.innerText);
             }
             i=i+j;
@@ -23,7 +23,7 @@ function Sift() {
                     });
                     break;
                 case 'ls': 
-                    for (var i=1; i<16; i++) {
+                    for (var i=1; i<20; i++) {
                         if (!parseInt(strings[j+i]?.charAt(0)) && strings[j+i]?.length < 35) {
                             switch (strings[j+i]?.substring(0,5)) {
                                 case "Skill": case "Passe": case "Endor": case "Compl": case "Schoo": case 'Langu': case "Unive": break;
