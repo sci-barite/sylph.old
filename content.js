@@ -21,10 +21,11 @@ function Sift() {
                     break;
                 case 'ls': 
                     for (var i=1; i<16; i++) {
-                        if (!parseInt(strings[j+i]?.charAt(0))) {
-                            switch (strings[j+i]?.charAt(0)+strings[j+i]?.charAt(1)+strings[j+i]?.charAt(2)) {
-                                case "Ski": case "Inf": case "Gro": case "End": case "Pas": case "Int": case "Rec": case "Com": case "Sch": case 'Lan': break;
-                                case "Eng": ENGLISH = strings[j+i+1]; j=j+i+1; break;
+                        if (!parseInt(strings[j+i]?.charAt(0)) && strings[j+i]?.length < 35) {
+                            switch (strings[j+i]?.charAt(0)+strings[j+i]?.charAt(1)+strings[j+i]?.charAt(2)+strings[j+i]?.charAt(3)) {
+                                case "Skil": case "Pass": case "Endo": case "Rece": case "Comp": case "Scho": case 'Lang': break;
+                                case "Infl": case "Grou":  case "Inte": i=i+10; break;
+                                case "Engl": ENGLISH = strings[j+i+1]; i=i+10; break;
                                 default:
                                     if (skills.indexOf(strings[j+i]) == -1) skills.push(strings[j+i]);
                                     break;
