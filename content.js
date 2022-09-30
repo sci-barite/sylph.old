@@ -19,7 +19,7 @@ function Sift() {
                 case 'ls:' :
                     let subskills = strings[j]?.substring(8).split(" · ");
                     subskills.forEach(function(entry,k) {
-                        if (skills.indexOf(subskills[k]) == -1) skills.push(' '+subskills[k]);
+                        if (skills.indexOf(' '+subskills[k]) == -1) skills.push(' '+subskills[k]);
                     });
                     break;
                 case 'ls': 
@@ -30,7 +30,7 @@ function Sift() {
                                 case "Influ": case "Group":  case "Inter": case "Recom": i=i+16; break;
                                 case "Engli": ENGLISH = strings[j+i+1]; i=i+16; break;
                                 default:
-                                    if (skills.indexOf(strings[j+i]) == -1) skills.push(' '+strings[j+i]);
+                                    if (skills.indexOf(' '+strings[j+i]) == -1) skills.push(' '+strings[j+i]);
                                     break;
                             }
                         }
@@ -39,7 +39,7 @@ function Sift() {
             }
         }
     });
-    SKILLS = skills.toString();
+    SKILLS = skills.toString().substring(1);
 }
 
 chrome.runtime.onMessage.addListener((request, sender) => {
