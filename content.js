@@ -4,7 +4,6 @@ var ENGLISH = 'NA';
 function Sift() {
     var strings = [];
     document.querySelectorAll('[aria-hidden="true"]').forEach(item => {item.removeAttribute('aria-hidden');});
-    alert(document.querySelectorAll(".visually-hidden").length);
     for (i=0; i<document.querySelectorAll(".visually-hidden").length; i++) {
         if (document.querySelectorAll(".visually-hidden")[i]?.innerText.startsWith("Skills")) {
             for (var y=i; y<(i+12); y++) {
@@ -17,7 +16,6 @@ function Sift() {
             }
         }
     }
-    alert(strings.toString());
     var skills = [];
     strings.forEach(function(entry,j) {
         if (strings[j]?.startsWith('Skil') || strings[j]?.startsWith('Engl')) {
@@ -32,10 +30,11 @@ function Sift() {
                     for (var i=1; i<12; i++) {
                         if (!parseInt(strings[j+i]?.charAt(0)) && strings[j+i]?.length < 35) {
                             switch (strings[j+i]?.substring(0,5)) {
-                                case "Skill": case "Passe": case "Endor": case "Compl": case "Schoo": case 'Langu': case "Unive": break;
-                                case "Recom": case "Recei": case "Given" : case "Nothi": break;
+                                case "Skill": case "Passe": case "Endor": case "Compl": case "Schoo": case 'Langu':
+                                case "Unive": case "Recom": case "Recei": case "Given" : case "Nothi": break;
+                                case "Engli": case "Англи": ENGLISH = strings[j+i+1]; i=i+16; break;
                                 case "Influ": case "Group":  case "Inter": i=i+16; break;
-                                case "Engli": ENGLISH = strings[j+i+1]; i=i+16; break;
+                                case "Proje": i=i+2; break;
                                 default:
                                     if (skills.indexOf(' '+strings[j+i]) == -1) skills.push(' '+strings[j+i]);
                                     break;
@@ -61,6 +60,7 @@ chrome.runtime.onMessage.addListener((request, sender) => {
         +'&skills='+SKILLS+'&eng='+ENGLISH+'&url='+document.URL,
         true);
         XSnd.send();
+        alert("✅ "+document.title.replace(' | LinkedIn', '')+"\nSkills:\n"+SKILLS+"\n\nEnglish level: "+ENGLISH)
     }
 });
 
