@@ -1,3 +1,5 @@
+// Upwork profile
+
 NAME = document.querySelectorAll(".d-inline")[0].innerText
 'Adnan G. '
 LOCATION = document.querySelectorAll(".d-inline-block")[3].innerText
@@ -10,3 +12,22 @@ ENGLISH = document.querySelectorAll(".d-inline-block")[12].innerText
 'Fluent'
 RATE = document.querySelectorAll(".d-inline")[1].innerText
 '$50.00/hr'
+
+// Upwork proposal modal
+
+const container = document.querySelector(".up-slider");
+
+LOCATION = container.querySelectorAll(".d-inline-block")[3].innerText
+'India'
+NAME = container.querySelectorAll(".d-inline")[0].innerText
+'Raju K. '
+RATE = container.querySelectorAll(".d-inline")[1].innerText
+'$15.00/hr'
+SKILLS = container.querySelectorAll(".skills")[0].innerText.split("\n")
+(15) ['Skills', 'Java', 'React', 'Angular', 'Laravel', 'CodeIgniter', 'MySQL', 'Node.js', 'Magento 2', 'Blockchain', 'Amazon EC2', 'WordPress', 'Agile Project Management', 'Solution Architecture', 'Team Building']
+ENGLISH = container.querySelectorAll(".list-unstyled")[0].innerText.split(":")[1].substring(1)
+'Native or Bilingual'
+POSITION = container.querySelectorAll(".break")[0].innerText
+'Angular Frontend Developer - Team Lead (Mid)'
+LINK = container.querySelector("a.d-block").toString().substring(8)
+'www.upwork.com/fl/~01b8dc55253ee923e4' // Or this could go in comments, and the bookmark will be the link (would expire with the job, probably)
