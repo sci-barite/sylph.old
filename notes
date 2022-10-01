@@ -1,0 +1,12 @@
+NAME = document.querySelectorAll(".d-inline")[0].innerText
+'Adnan G. '
+LOCATION = document.querySelectorAll(".d-inline-block")[3].innerText
+'Bosnia and Herzegovina'
+POSITION = document.querySelectorAll(".mb-0")[6].innerText
+'Web developer | React, Angular, Node, Spring developer'
+SKILLS = document.querySelectorAll(".mb-0")[8].innerText.split("\n")
+(12) ['C++', 'Java', 'SQL', 'React', 'Angular', 'Angular Material', 'CSS', 'Spring Boot', 'Node.js', 'HTML5', 'HTML', 'ExpressJS']
+ENGLISH = document.querySelectorAll(".d-inline-block")[12].innerText
+'Fluent'
+RATE = document.querySelectorAll(".d-inline")[1].innerText
+'$50.00/hr'
