@@ -83,7 +83,7 @@ chrome.runtime.onMessage.addListener((request, sender) => {
         +'&skills='+SKILLS+'&eng='+ENGLISH+'&rate='+RATE+'&loc='+LOCATION+'&url='+LINK,
         true);
         XSnd.send();
-        alert("✅ "+NAME+"\nSkills:\n"+SKILLS+"\n\nEnglish level: "+ENGLISH)
+        alert("✅ "+NAME+"\nPosition: "+POSITION+"\nSkills: "+SKILLS+"\nEnglish: "+ENGLISH)
     }
 });
 
