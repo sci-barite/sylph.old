@@ -11,7 +11,9 @@
         {
             "js": ["content.js"],
             "run_at": "document_end",
-            "matches": ["https://*.linkedin.com/in*"]
+            "matches": [
+                "https://*.linkedin.com/in*", "https://*.djinni.co/home/inbox*"
+            ]
         }
     ],
     "permissions": [

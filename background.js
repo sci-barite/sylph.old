@@ -4,7 +4,7 @@ chrome.runtime.onInstalled.addListener(()=> {
 
 chrome.bookmarks.onCreated.addListener((id, bookmark)=> {
     chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
-        chrome.tabs.sendMessage(tabs[0].id, { name: 'Sylph', bm: bookmark.parentId });
+        chrome.tabs.sendMessage(tabs[0].id, { name: 'Sylph', site: bookmark.url });
         console.log('Bookmark created, Sylph sent to content.js...');
     });
 })
