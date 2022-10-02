@@ -10,6 +10,10 @@
     "page_action": {
         "default_icon": "images/sylph32.png"
     },
+    "icons": {
+        "32": "images/sylph32.png",
+        "128": "images/sylph128.png"
+    },
     "content_scripts": [
         {
             "js": ["content.js"],
