@@ -16,7 +16,7 @@ function SiftUpwork(url) {
     if (url.includes("proposal")) {
         const container = document.querySelector(".up-slider");
         NAME = container.querySelectorAll(".d-inline")[0].innerText;
-        if (NAME.charAt(NAME.length) === " ") NAME = NAME.slice(0,-1);
+        if (NAME.charAt(NAME.length -1) === " ") NAME = NAME.slice(0,-1);
         LOCATION = container.querySelectorAll(".d-inline-block")[3].innerText;
         RATE = container.querySelectorAll(".d-inline")[1].innerText;
         SKILLS = container.querySelectorAll(".skills")[0].innerText.split("\n").toString();
@@ -26,7 +26,7 @@ function SiftUpwork(url) {
     }
     else {
         NAME = document.querySelectorAll(".d-inline")[0].innerText.slice(0,-1);
-        if (NAME.charAt(NAME.length) === " ") NAME = NAME.slice(0,-1);
+        if (NAME.charAt(NAME.length -1) === " ") NAME = NAME.slice(0,-1);
         LOCATION = document.querySelectorAll(".d-inline-block")[3].innerText;
         POSITION = document.querySelectorAll(".mb-0")[6].innerText;
         SKILLS = document.querySelectorAll(".skills")[0].innerText.split("\n").slice(1).toString();
