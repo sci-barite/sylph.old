@@ -12,14 +12,21 @@ function SiftDjinni() {
 }
 
 function SiftUpwork(url) {
-    LINK = url
+    LINK = url;
+    var [Sifted,SubSkills] = [ [],[] ];
     if (url.includes("proposal")) {
         const container = document.querySelector(".up-slider");
         NAME = container.querySelectorAll(".d-inline")[0].innerText;
         if (NAME.charAt(NAME.length -1) === " ") NAME = NAME.slice(0,-1);
         LOCATION = container.querySelectorAll(".d-inline-block")[3].innerText;
         RATE = container.querySelectorAll(".d-inline")[1].innerText;
-        SKILLS = container.querySelectorAll(".skills")[0].innerText.split("\n").toString();
+
+        SubSkills = container.querySelectorAll(".skills")[0].innerText.split("\n")
+        for (i=0; i<SubSkills.length; i++) {
+            if (SubSkills[i] != 'Skills') Sifted.push(' '+SubSkills[i]);
+        }
+        SKILLS = Sifted.toString().substring(1);
+
         ENGLISH = container.querySelectorAll(".list-unstyled")[0].innerText.split(":")[1].substring(1);
         POSITION = container.querySelectorAll(".break")[0].innerText;
         MORE = container.querySelector("a.d-block").toString().substring(8)
@@ -29,7 +36,13 @@ function SiftUpwork(url) {
         if (NAME.charAt(NAME.length -1) === " ") NAME = NAME.slice(0,-1);
         LOCATION = document.querySelectorAll(".d-inline-block")[3].innerText;
         POSITION = document.querySelectorAll(".mb-0")[6].innerText;
-        SKILLS = document.querySelectorAll(".skills")[0].innerText.split("\n").slice(1).toString();
+
+        SubSkills = document.querySelectorAll(".skills")[0].innerText.split("\n");
+        for (i=0; i<SubSkills.length; i++) {
+            if (SubSkills[i] != 'Skills') Sifted.push(' '+SubSkills[i]);
+        }
+        SKILLS = Sifted.toString().substring(1);
+
         ENGLISH = document.querySelectorAll(".d-inline-block")[12].innerText;
         RATE = document.querySelectorAll(".d-inline")[1].innerText;
     }
