@@ -40,7 +40,7 @@ for (i=0; i<3; i++) {
     SKILLS.push(document.querySelectorAll("a[data-field='skill_card_skill_topic']")[i].innerText.split("\n")[0]);
 }
 
-/**hidden AND ENGLISH*/
+/**HIDDEN AND ENGLISH*/
 const hidden = document.querySelectorAll(".visually-hidden");
 var collated = " · ";
 for (i=0; i < hidden.length; i++) {
