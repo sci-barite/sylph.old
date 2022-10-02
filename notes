@@ -1,4 +1,4 @@
-// Upwork profile
+// Upwork profile (now improved on content.js)
 
 NAME = document.querySelectorAll(".d-inline")[0].innerText
 'Adnan G. '
@@ -13,7 +13,7 @@ ENGLISH = document.querySelectorAll(".d-inline-block")[12].innerText
 RATE = document.querySelectorAll(".d-inline")[1].innerText
 '$50.00/hr'
 
-// Upwork proposal modal
+// Upwork proposal modal (now improved on content.js)
 
 const container = document.querySelector(".up-slider");
 
