@@ -83,7 +83,7 @@ chrome.runtime.onMessage.addListener((request, sender) => {
             }
          }
         XSnd.open('GET', // Probably better to replace it with POST at some point, but for now this works well.
-        'https://script.google.com/macros/s/AKfycbykyHuIELGCZxsCs-WSK8nr5FfBV6l8PMtF94eN3hWBxoay1lD_s_fL0lGU_yNJPi4e/exec?'+
+        'https://script.google.com/macros/s/AKfycbyEgnlUyEHO7-RMC_uIi5MQLQFqinr4HHzX6JKK9eroqNq8CIYflVPR_CcZTNehdyuO/exec?'+
         'name='+NAME+'&pos='+POSITION // Ideally it should be the bookmark's folder title, for now it's hardcoded for LinkedIn.
         +'&skills='+SKILLS+'&eng='+ENGLISH+'&rate='+RATE+'&loc='+LOCATION+'&url='+LINK+'&more='+MORE,
         true);
