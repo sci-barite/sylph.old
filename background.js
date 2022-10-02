@@ -8,7 +8,7 @@ chrome.bookmarks.onCreated.addListener((id, bookmark)=> {
         console.log('Bookmark created, Sylph is casting her spell...');
         chrome.pageAction.setIcon({
             tabId: tabs[0].id,
-            path: "images/sylph-magic32.png"
+            path: "images/sylph-magic32.png" // To show that magic is at work..!
         });
     });
 })
@@ -18,13 +18,13 @@ chrome.runtime.onMessage.addListener(function(Sylph) {
         if (Sylph.SpellCasted) {
             chrome.pageAction.setIcon({
                 tabId: tabs[0].id,
-                path: "images/sylph32.png"
+                path: "images/sylph32.png" // Resets the extension icon to show the job is completed!
             });
         }
         else {
             chrome.pageAction.setIcon({
                 tabId: tabs[0].id,
-                path: "images/sylph-hurt32.png"
+                path: "images/sylph-hurt32.png" // Different icon indicating something's wrong...
             });
         }
     });
