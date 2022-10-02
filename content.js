@@ -1,11 +1,10 @@
 var LINK = '';
 var NAME = 'NA';
-var RATE = 'NA';
+var RATE = '';
 var SKILLS = 'NA';
 var ENGLISH = 'NA';
 var LOCATION = '';
 var POSITION = 'Angular';
-var RESPONSE = 0;
 
 function SiftDjinni() {
     NAME = document.querySelector("#candidate_name")?.innerText;
@@ -20,9 +19,6 @@ function SiftDjinni() {
 
 function SiftLinked() {
     var Sifted = [];
-    document.querySelectorAll('[aria-hidden="true"]').forEach(item => {item.removeAttribute('aria-hidden');});
-    
-    // Main Skills first
     for (i=0; i<3; i++) {
         Sifted.push(' '+document.querySelectorAll("a[data-field='skill_card_skill_topic']")[i].innerText.split("\n")[0]);
     }
@@ -31,7 +27,7 @@ function SiftLinked() {
     var collated = " · ";
     for (i=0; i < hidden.length; i++) {
         if (hidden[i].innerText.includes("Skills:")) collated = collated+hidden[i].innerText.substring(8)+" · ";
-        else if (hidden[i].innerText.includes("English")) ENGLISH = hidden[i+1].innerText;
+        else if (hidden[i].innerText === "English") ENGLISH = hidden[i+1].innerText;
     }
 
     var subskills = collated.split(" · ");
@@ -46,14 +42,11 @@ function SiftLinked() {
 
 function SylphBack(response) {
     if (JSON.stringify(response).length > 10) {
-        RESPONSE++
         var DUP = "✅ ";
-        if (RESPONSE % 2 == 0) {
-            let message = JSON.stringify(response);
-            console.log(message);
-            if (message.includes("DUPLICATE")) DUP = "⚠️ DUPLICATE! "
-            alert(DUP+NAME+"\nPosition: "+POSITION+"\nSkills: "+SKILLS+"\nEnglish: "+ENGLISH)
-        }
+        let message = JSON.stringify(response);
+        console.log(message);
+        if (message.includes("DUPLICATE")) DUP = "⚠️ DUPLICATE! "
+        alert(DUP+NAME+"\nPosition: "+POSITION+"\nSkills: "+SKILLS+"\nEnglish: "+ENGLISH)
     }
 }
 
@@ -67,8 +60,11 @@ chrome.runtime.onMessage.addListener((request, sender) => {
             default: alert(request.site.substring(12,18)+": Can't read website name!"); return;
         }
         const XSnd = new XMLHttpRequest();
-        XSnd.onreadystatechange = function() {
-            SylphBack(XSnd.response);
+        XSnd.onreadystatechange = () => {
+            if (XSnd.readyState === XMLHttpRequest.DONE) {
+                if (XSnd.status === 0 || (XSnd.status >= 200 && XSnd.status < 400)) SylphBack(XSnd.response);
+                else alert("⛔ ERROR!\n\nSylph didn't find her way home!");
+            }
          }
         XSnd.open('GET', // Probably better to replace it with POST at some point, but for now this works well.
         'https://script.google.com/macros/s/AKfycbykyHuIELGCZxsCs-WSK8nr5FfBV6l8PMtF94eN3hWBxoay1lD_s_fL0lGU_yNJPi4e/exec?'+
