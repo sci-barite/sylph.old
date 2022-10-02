@@ -71,8 +71,8 @@ function SiftLinked() {
     LINK = document.URL;
 }
 
-function SylphBack(response, xsndstatus) {
-    if (xsndstatus == 200) {
+function SylphBack(response, status) {
+    if (status == 200) {
         var STATUS = "✅ ";
         console.log(response);
         if (response.includes("DUPLICATE")) STATUS = "⚠️ DUPLICATE! "
@@ -80,7 +80,7 @@ function SylphBack(response, xsndstatus) {
         chrome.runtime.sendMessage({SpellCasted: true}); // Resets the extension icon to show the job is completed!
     }
     else {
-        alert("⛔ ERROR!\nStatus: "+xsndstatus+"\nSylph didn't find her way home!");
+        alert("⛔ ERROR!\nStatus: "+status+"\nSylph didn't find her way home!");
         chrome.runtime.sendMessage({SpellCasted: false}); // To show a different icon indicating something's wrong...
     }
 }
@@ -99,7 +99,7 @@ chrome.runtime.onMessage.addListener((request, sender) => {
         const XSnd = new XMLHttpRequest();
         XSnd.onreadystatechange = () => {
             if (XSnd.readyState === XMLHttpRequest.DONE) {
-                if (XSnd.status === 0 || (XSnd.status >= 200 && XSnd.status <= 299)) SylphBack(XSnd.response, XSnd.status);
+                if (XSnd.status === 0 || (XSnd.status >= 200 && XSnd.status < 400)) SylphBack(XSnd.response, XSnd.status);
                 else {
                     alert("⛔ ERROR!\nStatus: "+XSnd.status+"\nSylph didn't find her way home!");
                     chrome.runtime.sendMessage({SpellCasted: false}); // To show a different icon indicating something's wrong...
