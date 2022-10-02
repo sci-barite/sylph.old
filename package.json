@@ -1,12 +1,12 @@
 {
-  "name": "chrome-ext",
-  "version": "1.0.0",
+  "name": "sylph",
+  "version": "1.4.4",
   "description": "First Chrome extension",
-  "main": "index.js",
+  "main": "content.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "sci-barite",
   "license": "ISC",
   "dependencies": {
     "@types/chrome": "^0.0.196",
