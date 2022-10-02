@@ -94,6 +94,8 @@ chrome.runtime.onMessage.addListener((request, sender) => {
             case "upwork": SiftUpwork(request.site); break; // The function should check if it's a profile or proposal page!
             default: alert(request.site.substring(12,18)+": Can't read website name!"); return;
         }
+        SKILLS = SKILLS.replace("++", "➕➕");
+        POSITION = POSITION.replace("+", "➕");
         const XSnd = new XMLHttpRequest();
         XSnd.onreadystatechange = () => {
             if (XSnd.readyState === XMLHttpRequest.DONE) {
