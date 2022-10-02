@@ -31,3 +31,25 @@ POSITION = container.querySelectorAll(".break")[0].innerText
 'Angular Frontend Developer - Team Lead (Mid)'
 LINK = container.querySelector("a.d-block").toString().substring(8)
 'www.upwork.com/fl/~01b8dc55253ee923e4' // Or this could go in comments, and the bookmark will be the link (would expire with the job, probably)
+
+// LinkedIn Easy:
+
+/**SKILLS*/
+SKILLS = [];
+for (i=0; i<3; i++) {
+    SKILLS.push(document.querySelectorAll("a[data-field='skill_card_skill_topic']")[i].innerText.split("\n")[0]);
+}
+
+/**hidden AND ENGLISH*/
+const hidden = document.querySelectorAll(".visually-hidden");
+var collated = " · ";
+for (i=0; i < hidden.length; i++) {
+    if (hidden[i].innerText.includes("Skills:")) collated = collated+hidden[i].innerText.substring(8)+" · ";
+    else if (hidden[i].innerText.includes("English")) ENGLISH = hidden[i+1].innerText;
+}
+" · Java · C++ · Базы данных · Linux · Python · C++ · Базы данных · Linux · Python · RabbitMQ · ZeroMQ · Sockets · WebSocket · PostgreSQL · MySQL · SQLite · Redis · WinAPI · RPC · C++ · Базы данных · Linux · Python · "
+
+var subskills = collated.split(" · ");
+for (i=0; i<subskills.length; i++) {
+    if (SKILLS.indexOf(subskills[i]) == -1) SKILLS.push(subskills[i]);
+}
