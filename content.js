@@ -57,12 +57,12 @@ chrome.runtime.onMessage.addListener((request, sender) => {
         XSnd.onreadystatechange = () => {
             if (XSnd.readyState === XMLHttpRequest.DONE) {
                 if (XSnd.status === 0 || (XSnd.status >= 200 && XSnd.status < 400)) SylphBack(XSnd.response);
-                else alert("⛔ ERROR!\n\nSylph didn't find her way home!");
+                else alert("⛔ ERROR!\nStatus: "+XSnd.status+"\nSylph didn't find her way home!");
             }
          }
         XSnd.open('GET', // Probably better to replace it with POST at some point, but for now this works well.
         'https://script.google.com/macros/s/AKfycbykyHuIELGCZxsCs-WSK8nr5FfBV6l8PMtF94eN3hWBxoay1lD_s_fL0lGU_yNJPi4e/exec?'+
-        'name='+NAME+'&pos='+POSITION // Ideally it should be the bookmark's folder title, but now it's declared in the code.
+        'name='+NAME+'&pos='+POSITION // Ideally it should be the bookmark's folder title, for now it's hardcoded for LinkedIn.
         +'&skills='+SKILLS+'&eng='+ENGLISH+'&rate='+RATE+'&loc='+LOCATION+'&url='+LINK,
         true);
         XSnd.send();
