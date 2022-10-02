@@ -11,7 +11,7 @@ chrome.bookmarks.onCreated.addListener((id, bookmark)=> {
             path: "images/sylph-magic32.png" // To show that magic is at work..!
         });
     });
-})
+});
 
 chrome.runtime.onMessage.addListener(function(Sylph) {
     chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
