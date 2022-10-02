@@ -71,14 +71,17 @@ function SiftLinked() {
     LINK = document.URL;
 }
 
-function SylphBack(response) {
-    if (JSON.stringify(response).length > 10) {
+function SylphBack(response, xsndstatus) {
+    if (xsndstatus == 200) {
         var STATUS = "✅ ";
-        const Message = JSON.stringify(response);
-        console.log(Message);
-        if (Message.includes("DUPLICATE")) STATUS = "⚠️ DUPLICATE! "
+        console.log(response);
+        if (response.includes("DUPLICATE")) STATUS = "⚠️ DUPLICATE! "
         alert(STATUS+NAME+"\nPosition: "+POSITION+"\nSkills: "+SKILLS+"\nEnglish: "+ENGLISH)
         chrome.runtime.sendMessage({SpellCasted: true}); // This will reset the icon to show the job is completed!
+    }
+    else {
+        alert("⛔ ERROR!\nStatus: "+xsndstatus+"\nSylph didn't find her way home!");
+        chrome.runtime.sendMessage({SpellCasted: false});
     }
 }
 
@@ -94,7 +97,7 @@ chrome.runtime.onMessage.addListener((request, sender) => {
         const XSnd = new XMLHttpRequest();
         XSnd.onreadystatechange = () => {
             if (XSnd.readyState === XMLHttpRequest.DONE) {
-                if (XSnd.status === 0 || (XSnd.status >= 200 && XSnd.status < 400)) SylphBack(XSnd.response);
+                if (XSnd.status === 0 || (XSnd.status >= 200 && XSnd.status <= 299)) SylphBack(XSnd.response, XSnd.status);
                 else {
                     alert("⛔ ERROR!\nStatus: "+XSnd.status+"\nSylph didn't find her way home!");
                     chrome.runtime.sendMessage({SpellCasted: false}); // To show a funny extension icon...
@@ -102,7 +105,7 @@ chrome.runtime.onMessage.addListener((request, sender) => {
             }
          }
         XSnd.open('GET', // Probably better to replace it with POST at some point, but for now this works well.
-        'https://script.google.com/macros/s/AKfycbylzxHp2vMRO3aDOL-rK2nZZZzv08_fHQclUU6PEndziQ5YwuMYVTT6712U66gLsCuC/exe?'+
+        'https://script.google.com/macros/s/AKfycbylzxHp2vMRO3aDOL-rK2nZZZzv08_fHQclUU6PEndziQ5YwuMYVTT6712U66gLsCuC/exec?'+
         'name='+NAME+'&pos='+POSITION // Ideally it should be the bookmark's folder title, for now it's hardcoded for LinkedIn.
         +'&skills='+SKILLS+'&eng='+ENGLISH+'&rate='+RATE+'&loc='+LOCATION+'&url='+LINK+'&more='+MORE,
         true);
