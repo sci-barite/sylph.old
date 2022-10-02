@@ -67,7 +67,7 @@ function SiftLinked() {
     }
 
     SKILLS = Sifted.toString().substring(1);
-    NAME = document.title.replace(' | LinkedIn', '');
+    NAME = document.querySelector(".text-heading-xlarge").innerText
     LINK = document.URL;
 }
 
@@ -77,11 +77,11 @@ function SylphBack(response, xsndstatus) {
         console.log(response);
         if (response.includes("DUPLICATE")) STATUS = "⚠️ DUPLICATE! "
         alert(STATUS+NAME+"\nPosition: "+POSITION+"\nSkills: "+SKILLS+"\nEnglish: "+ENGLISH)
-        chrome.runtime.sendMessage({SpellCasted: true}); // This will reset the icon to show the job is completed!
+        chrome.runtime.sendMessage({SpellCasted: true}); // Resets the extension icon to show the job is completed!
     }
     else {
         alert("⛔ ERROR!\nStatus: "+xsndstatus+"\nSylph didn't find her way home!");
-        chrome.runtime.sendMessage({SpellCasted: false});
+        chrome.runtime.sendMessage({SpellCasted: false}); // To show a different icon indicating something's wrong...
     }
 }
 
@@ -100,7 +100,7 @@ chrome.runtime.onMessage.addListener((request, sender) => {
                 if (XSnd.status === 0 || (XSnd.status >= 200 && XSnd.status <= 299)) SylphBack(XSnd.response, XSnd.status);
                 else {
                     alert("⛔ ERROR!\nStatus: "+XSnd.status+"\nSylph didn't find her way home!");
-                    chrome.runtime.sendMessage({SpellCasted: false}); // To show a funny extension icon...
+                    chrome.runtime.sendMessage({SpellCasted: false}); // To show a different icon indicating something's wrong...
                 }
             }
          }
