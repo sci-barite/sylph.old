@@ -1,4 +1,4 @@
-var [POSITION, LINK, NAME, RATE, SKILLS, ENGLISH, LOCATION] = ['Angular', '', 'NA', '', 'NA', 'NA', ''];
+var [POSITION, LINK, NAME, RATE, SKILLS, ENGLISH, LOCATION, MORE] = ['Angular', '', 'NA', '', 'NA', 'NA', '', ''];
 
 function SiftDjinni() {
     NAME = document.querySelector("#candidate_name")?.innerText;
@@ -9,6 +9,28 @@ function SiftDjinni() {
     POSITION = document.querySelector(".page-header")?.innerText.substring(11).split("›")[0];
     LOCATION = document.querySelector(".page-header")?.innerText.substring(11).split(', ')[2];
     LINK = document.URL;
+}
+
+function SiftUpwork(url) {
+    LINK = url
+    if (url.includes("proposal")) {
+        const container = document.querySelector(".up-slider");
+        NAME = container.querySelectorAll(".d-inline")[0].innerText;
+        LOCATION = container.querySelectorAll(".d-inline-block")[3].innerText;
+        RATE = container.querySelectorAll(".d-inline")[1].innerText;
+        SKILLS = container.querySelectorAll(".skills")[0].innerText.split("\n").toString();
+        ENGLISH = container.querySelectorAll(".list-unstyled")[0].innerText.split(":")[1].substring(1);
+        POSITION = container.querySelectorAll(".break")[0].innerText;
+        MORE = container.querySelector("a.d-block").toString().substring(8)
+    }
+    else {
+        NAME = document.querySelectorAll(".d-inline")[0].innerText
+        LOCATION = document.querySelectorAll(".d-inline-block")[3].innerText
+        POSITION = document.querySelectorAll(".mb-0")[6].innerText
+        SKILLS = document.querySelectorAll(".skills")[0].innerText.split("\n").slice(1).toString();
+        ENGLISH = document.querySelectorAll(".d-inline-block")[12].innerText
+        RATE = document.querySelectorAll(".d-inline")[1].innerText        
+    }
 }
 
 function SiftLinked() {
@@ -50,7 +72,7 @@ chrome.runtime.onMessage.addListener((request, sender) => {
         switch (request.site.substring(12,18)) {
             case "linked": SiftLinked(); break;
             case "ni.co/": SiftDjinni(); break;
-            case "upwork": SiftUpwork(); break; // The function should check if it's a profile or proposal page!
+            case "upwork": SiftUpwork(request.site); break; // The function should check if it's a profile or proposal page!
             default: alert(request.site.substring(12,18)+": Can't read website name!"); return;
         }
         const XSnd = new XMLHttpRequest();

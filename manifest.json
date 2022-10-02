@@ -12,7 +12,7 @@
             "js": ["content.js"],
             "run_at": "document_end",
             "matches": [
-                "https://*.linkedin.com/in*", "https://*.djinni.co/home/inbox*"
+                "https://*.linkedin.com/in*", "https://*.djinni.co/home/inbox*", "https://*.upwork.com/ab/applicants/*", "https://*.upwork.com/freelancers/*"
             ]
         }
     ],
