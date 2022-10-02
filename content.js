@@ -86,7 +86,7 @@ function SylphBack(response, xsndstatus) {
 }
 
 chrome.runtime.onMessage.addListener((request, sender) => {
-    console.log('Request', request);
+    console.log('Sylph', request);
     if (request.name == 'Sylph') {
         switch (request.site.substring(12,18)) {
             case "linked": SiftLinked(); break;
