@@ -15,21 +15,21 @@ function SiftUpwork(url) {
     LINK = url;
     var [Sifted,SubSkills] = [ [],[] ];
     if (url.includes("proposal")) {
-        const container = document.querySelector(".up-slider");
-        NAME = container.querySelectorAll(".d-inline")[0].innerText;
+        const Container = document.querySelector(".up-slider");
+        NAME = Container.querySelectorAll(".d-inline")[0].innerText;
         if (NAME.charAt(NAME.length -1) === " ") NAME = NAME.slice(0,-1);
-        LOCATION = container.querySelectorAll(".d-inline-block")[3].innerText;
-        RATE = container.querySelectorAll(".d-inline")[1].innerText;
+        LOCATION = Container.querySelectorAll(".d-inline-block")[3].innerText;
+        RATE = Container.querySelectorAll(".d-inline")[1].innerText;
 
-        SubSkills = container.querySelectorAll(".skills")[0].innerText.split("\n")
+        SubSkills = Container.querySelectorAll(".skills")[0].innerText.split("\n")
         for (i=0; i<SubSkills.length; i++) {
             if (SubSkills[i] != 'Skills') Sifted.push(' '+SubSkills[i]);
         }
         SKILLS = Sifted.toString().substring(1);
 
-        ENGLISH = container.querySelectorAll(".list-unstyled")[0].innerText.split(":")[1].substring(1);
-        POSITION = container.querySelectorAll(".break")[0].innerText;
-        MORE = container.querySelector("a.d-block").toString().substring(8)
+        ENGLISH = Container.querySelectorAll(".list-unstyled")[0].innerText.split(":")[1].substring(1);
+        POSITION = Container.querySelectorAll(".break")[0].innerText;
+        MORE = Container.querySelector("a.d-block").toString().substring(8)
     }
     else {
         NAME = document.querySelectorAll(".d-inline")[0].innerText.slice(0,-1);
@@ -54,16 +54,16 @@ function SiftLinked() {
         Sifted.push(' '+document.querySelectorAll("a[data-field='skill_card_skill_topic']")[i].innerText.split("\n")[0]);
     }
 
-    const hidden = document.querySelectorAll(".visually-hidden");
-    var collated = " · ";
-    for (i=0; i < hidden.length; i++) {
-        if (hidden[i].innerText.includes("Skills:")) collated = collated+hidden[i].innerText.substring(8)+" · ";
-        else if (hidden[i].innerText === "English") ENGLISH = hidden[i+1].innerText;
+    const Hidden = document.querySelectorAll(".visually-hidden");
+    var Collated = " · ";
+    for (i=0; i < Hidden.length; i++) {
+        if (Hidden[i].innerText.includes("Skills:")) Collated = Collated+Hidden[i].innerText.substring(8)+" · ";
+        else if (Hidden[i].innerText === "English") ENGLISH = Hidden[i+1].innerText;
     }
 
-    var subskills = collated.split(" · ");
-    for (i=0; i<subskills.length; i++) {
-        if (Sifted.indexOf(' '+subskills[i]) == -1 && Sifted != '') Sifted.push(' '+subskills[i]);
+    var SubSkills = Collated.split(" · ");
+    for (i=0; i<SubSkills.length; i++) {
+        if (Sifted.indexOf(' '+SubSkills[i]) == -1 && Sifted != '') Sifted.push(' '+SubSkills[i]);
     }
 
     SKILLS = Sifted.toString().substring(1);
@@ -73,11 +73,11 @@ function SiftLinked() {
 
 function SylphBack(response) {
     if (JSON.stringify(response).length > 10) {
-        var DUP = "✅ ";
-        let message = JSON.stringify(response);
-        console.log(message);
-        if (message.includes("DUPLICATE")) DUP = "⚠️ DUPLICATE! "
-        alert(DUP+NAME+"\nPosition: "+POSITION+"\nSkills: "+SKILLS+"\nEnglish: "+ENGLISH)
+        var STATUS = "✅ ";
+        const Message = JSON.stringify(response);
+        console.log(Message);
+        if (Message.includes("DUPLICATE")) STATUS = "⚠️ DUPLICATE! "
+        alert(STATUS+NAME+"\nPosition: "+POSITION+"\nSkills: "+SKILLS+"\nEnglish: "+ENGLISH)
     }
 }
 
