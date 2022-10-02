@@ -78,6 +78,7 @@ function SylphBack(response) {
         console.log(Message);
         if (Message.includes("DUPLICATE")) STATUS = "⚠️ DUPLICATE! "
         alert(STATUS+NAME+"\nPosition: "+POSITION+"\nSkills: "+SKILLS+"\nEnglish: "+ENGLISH)
+        chrome.runtime.sendMessage({SpellCasted: true});
     }
 }
 
@@ -94,7 +95,10 @@ chrome.runtime.onMessage.addListener((request, sender) => {
         XSnd.onreadystatechange = () => {
             if (XSnd.readyState === XMLHttpRequest.DONE) {
                 if (XSnd.status === 0 || (XSnd.status >= 200 && XSnd.status < 400)) SylphBack(XSnd.response);
-                else alert("⛔ ERROR!\nStatus: "+XSnd.status+"\nSylph didn't find her way home!");
+                else {
+                    alert("⛔ ERROR!\nStatus: "+XSnd.status+"\nSylph didn't find her way home!");
+                    chrome.runtime.sendMessage({SpellCasted: false});
+                }
             }
          }
         XSnd.open('GET', // Probably better to replace it with POST at some point, but for now this works well.

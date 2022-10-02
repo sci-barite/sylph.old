@@ -1,11 +1,14 @@
 {
-    "name": "my first extension",
-    "version": "1.0.0",
-    "description": "Very first extension",
+    "name": "Sylph",
+    "version": "1.4.3",
+    "description": "Chrome Extension to sift data from some websites, for a Google Apps Script web app to process.",
     "manifest_version": 2,
     "background": {
         "scripts": ["background.js"],
         "persistent": false
+    },
+    "page_action": {
+        "default_icon": "images/sylph32.png"
     },
     "content_scripts": [
         {
