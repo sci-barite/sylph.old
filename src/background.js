@@ -3,11 +3,9 @@ chrome.runtime.onInstalled.addListener(()=> {
 });
 
 chrome.bookmarks.onCreated.addListener((id, bookmark)=> {
-    const parent = bookmark.parentId;
-    chrome.bookmarks.get(parent, (bmt) => {
-        const folder = bmt[0].title;
+    chrome.bookmarks.get(bookmark.parentId, (folder) => {
         chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
-            chrome.tabs.sendMessage(tabs[0].id, { name: 'Sylph', site: bookmark.url, position: folder });
+            chrome.tabs.sendMessage(tabs[0].id, { name: 'Sylph', site: bookmark.url, position: folder[0].title });
             console.log('Bookmark created, Sylph is casting her spell...');
             chrome.pageAction.setIcon({
                 tabId: tabs[0].id,
