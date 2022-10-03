@@ -4,29 +4,29 @@
  * Now writing data coming from Upwork, and Djinni, too...
  */
  function doGet(e) {
-    var get = e.parameter;
-    if (get.url.includes("linkedin")) var DB = SpreadsheetApp.openById(/** "SHEET_ID" */).getSheetByName("DB");
+    var Get = e.parameter;
+    if (Get.url.includes("linkedin")) var DB = SpreadsheetApp.openById(/** "SHEET_ID" */).getSheetByName("DB");
     else var DB = SpreadsheetApp.openById(/** "SHEET_ID" */).getSheetByName("FreelanceDB");
     const Today = Utilities.formatDate(new Date(), "GMT+3", "dd/MM/yyyy");
     const Names = DB.getRange('A:A').getValues();
 
-    var JSONString = JSON.stringify([get.name]);  
+    var JSONString = JSON.stringify([Get.name]);  
     var JSONOutput = ContentService.createTextOutput(JSONString+' parameter invalid.\n\nHave a nice day!');
     JSONOutput.setMimeType(ContentService.MimeType.JSON);
 
-    if (get.name == null) return JSONOutput;
+    if (Get.name == null) return JSONOutput;
 
-    const Search = (element) => element == get.name;
-    if (Names.findIndex(Search) != -1) var name = 'DUPLICATE! '+get.name; else var name = get.name;
+    const Search = (element) => element == Get.name;
+    if (Names.findIndex(Search) != -1) var name = 'DUPLICATE! '+Get.name; else var name = Get.name;
 
     DB.appendRow([
-      name, '', '0.New', 'Sylph', Today, get.pos, get.skills, get.loc, '', get.more, '', '', get.eng, get.rate
+      name, '', '0.New', 'Sylph', Today, Get.pos, Get.skills, Get.loc, '', Get.more, '', '', Get.eng, Get.rate
     ]);
     var Name = DB.getRange('A'+DB.getLastRow());
     var Row = DB.getRange(DB.getLastRow()+':'+DB.getLastRow());
     var Link = SpreadsheetApp.newRichTextValue()
       .setText(name)
-      .setLinkUrl(get.url)
+      .setLinkUrl(Get.url)
       .build();
     Name.setRichTextValue(Link);
     Name.offset(0,1).insertCheckboxes();
