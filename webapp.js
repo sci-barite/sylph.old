@@ -3,7 +3,7 @@
  * Used in conjunction with my first my Sylph Chrome Extension, writes an entry on Google Sheets directly from LinkedIn, on Bookmark creation.
  * Now writing data coming from Upwork, and Djinni, too...
  */
- function doGet(e){
+ function doGet(e) {
     if (e.parameter.url.includes("linkedin")) var DB = SpreadsheetApp.openById(/** "SHEET_ID" */).getSheetByName("DB");
     else var DB = SpreadsheetApp.openById(/** "SHEET_ID" */).getSheetByName("FreelanceDB");
     const Today = Utilities.formatDate(new Date(), "GMT+3", "dd/MM/yyyy");
