@@ -10,7 +10,7 @@ function SylphBack(response, status) {
     }
     else {
         alert("⛔ ERROR!\nStatus: "+status+"\nSylph didn't find her way home!");
-        chrome.runtime.sendMessage({SpellSuccessful: false}); // To show a different icon indicating something's wrong...
+        chrome.runtime.sendMessage({SpellSuccessful: false}); // Update icon to show something's wrong...
     }
 }
 
@@ -31,7 +31,7 @@ chrome.runtime.onMessage.addListener((request, sender) => {
                 if (XSnd.status === 0 || (XSnd.status >= 200 && XSnd.status < 400)) SylphBack(XSnd.response, XSnd.status);
                 else {
                     alert("⛔ ERROR!\nStatus: "+XSnd.status+"\nSylph didn't find her way home!");
-                    chrome.runtime.sendMessage({SpellSuccessful: false}); // To show a different icon indicating something's wrong...
+                    chrome.runtime.sendMessage({SpellSuccessful: false}); // Update icon to show something's wrong...
                 }
             }
          }
