@@ -33,7 +33,7 @@
     Row.setVerticalAlignment('middle');
 
     JSONString = JSON.stringify(Row.getValues());  
-    JSONOutput = ContentService.createTextOutput(JSONString+"\n\n🧚‍♀️ Sylph's spell was casted successfully!");
+    JSONOutput = ContentService.createTextOutput(JSONString+"🧚‍♀️ Sylph's spell was casted successfully!");
     JSONOutput.setMimeType(ContentService.MimeType.JSON);
 
     return JSONOutput;
