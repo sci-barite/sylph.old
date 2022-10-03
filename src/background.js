@@ -7,9 +7,8 @@ function SylphCasts()
    if ( SylphCasting )
    {
       chrome.pageAction.setIcon({tabId: Tab, path: 'images/sylph-casts'+CastingIndex+'.png'});
-      if (CastingIndex != 10) CastingIndex++;
-      else CastingIndex = 1;
-      window.setTimeout(SylphCasts, 250); // Animation for the win!
+      CastingIndex = (CastingIndex + 1) % 10;
+      window.setTimeout(SylphCasts, 200); // Animation for the win!
    }
 }
 
