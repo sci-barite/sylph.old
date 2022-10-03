@@ -1,0 +1,15 @@
+{
+  "name": "sylph",
+  "version": "1.5.2",
+  "description": "First Chrome extension",
+  "main": "content.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sci-barite",
+  "license": "ISC",
+  "dependencies": {
+    "@types/chrome": "^0.0.196",
+    "types": "^0.1.1"
+  }
+}
