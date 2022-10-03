@@ -13,7 +13,7 @@ function SylphCasts()
 }
 
 chrome.runtime.onInstalled.addListener(()=> {
-    console.log('Sylph installed!');
+    console.log('Sylph awaits your orders!');
 });
 
 chrome.bookmarks.onCreated.addListener((id, bookmark)=> {
@@ -32,6 +32,7 @@ chrome.runtime.onMessage.addListener(function(Sylph) {
     if (Sylph.SpellSuccessful) {
         SylphCasting = false;
         chrome.pageAction.setIcon({tabId: Tab, path: "images/sylph32.png"}); // Reset to original icon
+        console.log("Sylph has casted her spell successfully!");
     }
     else {
         SylphCasting = false;
