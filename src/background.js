@@ -8,7 +8,7 @@ function SylphCasts()
    {
       chrome.pageAction.setIcon({tabId: Tab, path: 'images/sylph-casts'+CastingIndex+'.png'});
       CastingIndex = (CastingIndex + 1) % 10;
-      window.setTimeout(SylphCasts, 180); // Sylph spell-casting animation for the win!!
+      window.setTimeout(SylphCasts, 160); // Sylph spell-casting animation for the win!!
    }
 }
 
