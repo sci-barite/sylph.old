@@ -16,36 +16,38 @@ function SiftUpwork(url) {
     var [Sifted,SubSkills] = [ [],[] ];
     if (url.includes("proposal")) {
         const Container = document.querySelector(".up-slider");
-        NAME = Container.querySelectorAll(".d-inline")[0].innerText;
-        if (NAME.charAt(NAME.length -1) === " ") NAME = NAME.slice(0,-1);
-        LOCATION = Container.querySelectorAll(".d-inline-block")[3].innerText;
-        RATE = Container.querySelectorAll(".d-inline")[1].innerText;
 
-        SubSkills = Container.querySelectorAll(".skills")[0].innerText.split("\n")
-        for (i=0; i<SubSkills.length; i++) {
-            if (SubSkills[i] != 'Skills') Sifted.push(' '+SubSkills[i]);
+        NAME = Container.querySelectorAll(".d-inline")[0].innerText.trim();
+        LOCATION = Container.querySelectorAll(".d-inline-block")[3].innerText;
+        RATE = Container.querySelectorAll(".d-inline")[1].innerText.trim();
+
+        if (Container.querySelectorAll(".skills")[0]) {
+            SubSkills = Container.querySelectorAll(".skills")[0].innerText.split("\n")
+            for (i=0; i<SubSkills.length; i++) if (!SubSkills[i].includes("Skills")) Sifted.push(' '+SubSkills[i]);
         }
+        //else if (Container."ul.d-flex"))
         SKILLS = Sifted.toString().substring(1);
         
+        POSITION = Container.querySelectorAll(".break")[0].innerText.trim();
+
         ENGLISH = Container.querySelectorAll(".list-unstyled")[0].innerText.split(":")[1].substring(1);
-        POSITION = Container.querySelectorAll(".break")[0].innerText;
         MORE = Container.querySelector("a.d-block").toString().substring(8)
     }
     else {
-        NAME = document.querySelectorAll(".d-inline")[0].innerText.slice(0,-1).split("\n")[1].trim();
-        if (NAME.charAt(NAME.length -1) === " ") NAME = NAME.slice(0,-1);
+        NAME = document.querySelectorAll(".d-inline")[0].innerText.trim();
         LOCATION = document.querySelectorAll(".d-inline-block")[3].innerText;
-        if (document.querySelectorAll(".up-card")[3].querySelector("em.break").innerText)
-            POSITION = document.querySelectorAll(".up-card")[3].querySelector("em.break").innerText;
-        else POSITION = document.querySelectorAll(".up-card")[3].innerText.split("\n")[1];
+        RATE = document.querySelectorAll(".d-inline")[1].innerText.trim();
 
-        SubSkills = document.querySelectorAll(".skills")[1].innerText.split("\n");
-        for (i=0; i<SubSkills.length; i++) Sifted.push(' '+SubSkills[i]);
+        SubSkills = document.querySelectorAll(".skills")[0].innerText.split("\n");
+        for (i=0; i<SubSkills.length; i++) if (!SubSkills[i].includes("Skills")) Sifted.push(' '+SubSkills[i]);
         SKILLS = Sifted.toString().substring(1);
+
+        if (document.querySelectorAll(".up-card")[3].querySelector("em.break"))
+            POSITION = document.querySelectorAll(".up-card")[3].querySelector("em.break").innerText;
+        else POSITION = document.querySelectorAll("h2.mb-0")[1].innerText.trim();
 
         const lists = document.querySelectorAll(".list-unstyled");
         ENGLISH = lists[1].querySelector("span.d-inline-block").innerText
-        RATE = document.querySelectorAll(".d-inline")[1].innerText.split("\n")[1].trim();
     }
 }
 
