@@ -18,7 +18,10 @@ chrome.runtime.onInstalled.addListener(()=> {
 
 chrome.bookmarks.onCreated.addListener((id, bookmark)=> {
     var url = bookmark.url;
-    if (url.includes("linkedin.com/in") || url.includes("upwork.com/ab/") || url.includes("upwork.com/freelancers") || url.includes("djinni.co/home")) {
+    if (url.includes("linkedin.com/in") || 
+        url.includes("upwork.com/ab/") || 
+        url.includes("upwork.com/freelancers") || 
+        url.includes("djinni.co/home")) {
         chrome.bookmarks.get(bookmark.parentId, (folder) => {
             chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
                 Tab = tabs[0].id
