@@ -3,12 +3,17 @@ chrome.runtime.onInstalled.addListener(()=> {
 });
 
 chrome.bookmarks.onCreated.addListener((id, bookmark)=> {
-    chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
-        chrome.tabs.sendMessage(tabs[0].id, { name: 'Sylph', site: bookmark.url });
-        console.log('Bookmark created, Sylph is casting her spell...');
-        chrome.pageAction.setIcon({
-            tabId: tabs[0].id,
-            path: "images/sylph-magic32.png" // To show that magic is at work..!
+    const parent = bookmark.parentId;
+    chrome.bookmarks.get(parent, (folder) => {
+        const position = folder[0].title;
+        alert(parent+' '+position);
+        chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
+            chrome.tabs.sendMessage(tabs[0].id, { name: 'Sylph', site: bookmark.url, pos: position });
+            console.log('Bookmark created, Sylph is casting her spell...');
+            chrome.pageAction.setIcon({
+                tabId: tabs[0].id,
+                path: "images/sylph-magic32.png" // To show that magic is at work..!
+            });
         });
     });
 });

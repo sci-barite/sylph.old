@@ -1,12 +1,13 @@
 var [POSITION, LINK, NAME, RATE, SKILLS, ENGLISH, LOCATION, MORE] = ['Angular', '', 'NA', '', 'NA', 'NA', '', ''];
 
-function SiftDjinni() {
+function SiftDjinni(position) {
     NAME = document.querySelector("#candidate_name")?.innerText;
     ENGLISH = document.querySelector(".inbox-thread-candidate-info")?.innerText;
     SKILLS = document.querySelector(".inbox-candidate-details--title")?.innerText.split(",")[0]+" "+ENGLISH.split(" · ")[0];
     ENGLISH = ENGLISH.split(" · ")[1];
     RATE = document.querySelector(".inbox-candidate-details--title")?.innerText.split(",")[1];
-    POSITION = document.querySelector(".page-header")?.innerText.substring(11).split("›")[0];
+    if (document.querySelector(".page-header")?.innerText.split("›")[0].includes("Inbox")) POSITION = position;
+    else POSITION = document.querySelector(".page-header")?.innerText.substring(11).split("›")[0];
     LOCATION = document.querySelector(".page-header")?.innerText.substring(11).split(', ')[2];
     LINK = document.URL;
 }
@@ -21,8 +22,8 @@ function SiftUpwork(url) {
         LOCATION = Container.querySelectorAll(".d-inline-block")[3].innerText;
         RATE = Container.querySelectorAll(".d-inline")[1].innerText.trim();
 
-        if (Container.querySelectorAll(".skills")[0]) {
-            SubSkills = Container.querySelectorAll(".skills")[0].innerText.split("\n")
+        if (Container.querySelectorAll(".skills")[1]) {
+            SubSkills = Container.querySelectorAll(".skills")[1].innerText.split("\n")
             for (i=0; i<SubSkills.length; i++) if (!SubSkills[i].includes("Skills")) Sifted.push(' '+SubSkills[i]);
         }
         else if (Container.querySelectorAll("div[data-test='ontology-attribute-group-tree-viewer-wrapper'")[1]) {
@@ -56,7 +57,7 @@ function SiftUpwork(url) {
     }
 }
 
-function SiftLinked() {
+function SiftLinked(position) {
     var Sifted = [];
     for (i=0; i<3; i++) {
         Sifted.push(' '+document.querySelectorAll("a[data-field='skill_card_skill_topic']")[i].innerText.split("\n")[0]);
@@ -76,6 +77,7 @@ function SiftLinked() {
 
     SKILLS = Sifted.toString().substring(1);
     NAME = document.querySelector(".text-heading-xlarge").innerText
+    POSITION = position;
     LINK = document.URL;
 }
 
@@ -97,8 +99,8 @@ chrome.runtime.onMessage.addListener((request, sender) => {
     console.log('🧚‍♀️ Sylph!', request);
     if (request.name == 'Sylph') {
         switch (request.site.substring(12,18)) {
-            case "linked": SiftLinked(); break;
-            case "ni.co/": SiftDjinni(); break;
+            case "linked": SiftLinked(request.position); break;
+            case "ni.co/": SiftDjinni(request.position); break;
             case "upwork": SiftUpwork(request.site); break; // The function should check if it's a profile or proposal page!
             default: alert(request.site.substring(12,18)+": Can't read website name!"); return;
         }
