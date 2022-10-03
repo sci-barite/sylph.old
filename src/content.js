@@ -87,11 +87,11 @@ function SylphBack(response, status) {
         console.log(response);
         if (response.includes("DUPLICATE")) STATUS = "⚠️ DUPLICATE! "
         alert(STATUS+NAME+"\nPosition: "+POSITION+"\nSkills: "+SKILLS+"\nEnglish: "+ENGLISH)
-        chrome.runtime.sendMessage({SpellCasted: true}); // Resets the extension icon to show the job is completed!
+        chrome.runtime.sendMessage({SpellSuccessful: true}); // Resets the extension icon to show the job is completed!
     }
     else {
         alert("⛔ ERROR!\nStatus: "+status+"\nSylph didn't find her way home!");
-        chrome.runtime.sendMessage({SpellCasted: false}); // To show a different icon indicating something's wrong...
+        chrome.runtime.sendMessage({SpellSuccessful: false}); // To show a different icon indicating something's wrong...
     }
 }
 
@@ -112,7 +112,7 @@ chrome.runtime.onMessage.addListener((request, sender) => {
                 if (XSnd.status === 0 || (XSnd.status >= 200 && XSnd.status < 400)) SylphBack(XSnd.response, XSnd.status);
                 else {
                     alert("⛔ ERROR!\nStatus: "+XSnd.status+"\nSylph didn't find her way home!");
-                    chrome.runtime.sendMessage({SpellCasted: false}); // To show a different icon indicating something's wrong...
+                    chrome.runtime.sendMessage({SpellSuccessful: false}); // To show a different icon indicating something's wrong...
                 }
             }
          }

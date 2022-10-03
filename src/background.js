@@ -1,3 +1,18 @@
+var CastingIndex = 1;
+var SylphCasting = false;
+var Tab;
+
+function SylphCasts()
+{               
+   if ( SylphCasting )
+   {
+      chrome.pageAction.setIcon({tabId: Tab, path: 'images/sylph-casts'+CastingIndex+'.png'});
+      if (CastingIndex != 10) CastingIndex++;
+      else CastingIndex = 1;
+      window.setTimeout(SylphCasts, 250); // Animation for the win!
+   }
+}
+
 chrome.runtime.onInstalled.addListener(()=> {
     console.log('Sylph installed!');
 });
@@ -5,29 +20,22 @@ chrome.runtime.onInstalled.addListener(()=> {
 chrome.bookmarks.onCreated.addListener((id, bookmark)=> {
     chrome.bookmarks.get(bookmark.parentId, (folder) => {
         chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
-            chrome.tabs.sendMessage(tabs[0].id, { name: 'Sylph', site: bookmark.url, position: folder[0].title });
+            Tab = tabs[0].id
+            chrome.tabs.sendMessage(Tab, { name: 'Sylph', site: bookmark.url, position: folder[0].title });
             console.log("Bookmark created in '"+folder[0].title+"', Sylph is casting her spell...");
-            chrome.pageAction.setIcon({
-                tabId: tabs[0].id,
-                path: "images/sylph-magic32.png" // To show that magic is at work..!
-            });
+            SylphCasting = true;
+            SylphCasts();
         });
     });
 });
 
 chrome.runtime.onMessage.addListener(function(Sylph) {
-    chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
-        if (Sylph.SpellCasted) {
-            chrome.pageAction.setIcon({
-                tabId: tabs[0].id,
-                path: "images/sylph32.png" // Resets the extension icon to show the job is completed!
-            });
-        }
-        else {
-            chrome.pageAction.setIcon({
-                tabId: tabs[0].id,
-                path: "images/sylph-hurt32.png" // Different icon indicating something's wrong...
-            });
-        }
-    });
+    if (Sylph.SpellSuccessful) {
+        SylphCasting = false;
+        chrome.pageAction.setIcon({tabId: Tab, path: "images/sylph32.png"}); // Reset to original icon
+    }
+    else {
+        SylphCasting = false;
+        chrome.pageAction.setIcon({tabId: Tab, path: "images/sylph-hurt.png"}); // Sylph hurt in case of error
+    }
 });
