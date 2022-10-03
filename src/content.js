@@ -17,7 +17,7 @@ function SiftUpwork(url) {
     if (url.includes("proposal")) {
         const Container = document.querySelector(".up-slider");
 
-        NAME = Container.querySelectorAll(".d-inline")[0].innerText.trim();
+        NAME = Container.querySelector(".d-inline").innerText.trim();
         LOCATION = Container.querySelectorAll(".d-inline-block")[3].innerText;
         RATE = Container.querySelectorAll(".d-inline")[1].innerText.trim();
 
@@ -25,13 +25,18 @@ function SiftUpwork(url) {
             SubSkills = Container.querySelectorAll(".skills")[0].innerText.split("\n")
             for (i=0; i<SubSkills.length; i++) if (!SubSkills[i].includes("Skills")) Sifted.push(' '+SubSkills[i]);
         }
-        //else if (Container."ul.d-flex"))
+        else if (Container.querySelectorAll("div[data-test='ontology-attribute-group-tree-viewer-wrapper'")[1]) {
+            SubSkills = Container.querySelectorAll("div[data-test='ontology-attribute-group-tree-viewer-wrapper'")[1].innerText.split("\n")
+            for (i=0; i<SubSkills.length; i++) 
+                if (!SubSkills[i].includes("Skills") && !SubSkills[i].includes("Development") && !SubSkills[i].includes("Business"))
+                    Sifted.push(' '+SubSkills[i]);
+        }
+        else Sifted.push(' ERR: Could not parse any skill!');
         SKILLS = Sifted.toString().substring(1);
         
         POSITION = Container.querySelectorAll(".break")[0].innerText.trim();
-
-        ENGLISH = Container.querySelectorAll(".list-unstyled")[0].innerText.split(":")[1].substring(1);
-        MORE = Container.querySelector("a.d-block").toString().substring(8)
+        ENGLISH = Container.querySelectorAll("div[data-test='language'")[0].innerText.split(":")[1].trim()
+        MORE = Container.querySelector("a.d-block").toString().substring(12) // Keeping it shorter not to exceed GET limits...
     }
     else {
         NAME = document.querySelectorAll(".d-inline")[0].innerText.trim();
