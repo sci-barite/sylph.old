@@ -8,7 +8,7 @@ function SylphCasts()
    {
       chrome.pageAction.setIcon({tabId: Tab, path: 'images/sylph-casts'+CastingIndex+'.png'});
       CastingIndex = (CastingIndex + 1) % 10;
-      window.setTimeout(SylphCasts, 200); // Animation for the win!
+      window.setTimeout(SylphCasts, 180); // Sylph spell-casting animation for the win!!
    }
 }
 
@@ -23,7 +23,7 @@ chrome.bookmarks.onCreated.addListener((id, bookmark)=> {
             chrome.tabs.sendMessage(Tab, { name: 'Sylph', site: bookmark.url, position: folder[0].title });
             console.log("Bookmark created in '"+folder[0].title+"', Sylph is casting her spell...");
             SylphCasting = true;
-            SylphCasts();
+            SylphCasts(); // Starts the animation of the icon!
         });
     });
 });
@@ -31,11 +31,11 @@ chrome.bookmarks.onCreated.addListener((id, bookmark)=> {
 chrome.runtime.onMessage.addListener(function(Sylph) {
     if (Sylph.SpellSuccessful) {
         SylphCasting = false;
-        chrome.pageAction.setIcon({tabId: Tab, path: "images/sylph32.png"}); // Reset to original icon
+        chrome.pageAction.setIcon({tabId: Tab, path: "images/sylph32.png"}); // Stops animation, resets to default icon.
         console.log("Sylph has casted her spell successfully!");
     }
     else {
         SylphCasting = false;
-        chrome.pageAction.setIcon({tabId: Tab, path: "images/sylph-hurt.png"}); // Sylph hurt in case of error
+        chrome.pageAction.setIcon({tabId: Tab, path: "images/sylph-hurt.png"}); // Stops animation, puts "hurt" icon.
     }
 });
