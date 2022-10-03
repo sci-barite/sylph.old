@@ -17,15 +17,18 @@ chrome.runtime.onInstalled.addListener(()=> {
 });
 
 chrome.bookmarks.onCreated.addListener((id, bookmark)=> {
-    chrome.bookmarks.get(bookmark.parentId, (folder) => {
-        chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
-            Tab = tabs[0].id
-            chrome.tabs.sendMessage(Tab, { name: 'Sylph', site: bookmark.url, position: folder[0].title });
-            console.log("Bookmark created in '"+folder[0].title+"', Sylph is casting her spell...");
-            SylphCasting = true;
-            SylphCasts(); // Starts the animation of the icon!
+    var url = bookmark.url;
+    if (url.includes("linkedin.com/in") || url.includes("upwork.com/ab/") || url.includes("upwork.com/freelancers") || url.includes("djinni.co/home")) {
+        chrome.bookmarks.get(bookmark.parentId, (folder) => {
+            chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
+                Tab = tabs[0].id
+                chrome.tabs.sendMessage(Tab, { name: 'Sylph', site: url, position: folder[0].title });
+                console.log("Bookmark created in '"+folder[0].title+"', Sylph is casting her spell...");
+                SylphCasting = true;
+                SylphCasts(); // Starts the animation of the icon!
+            });
         });
-    });
+    }
 });
 
 chrome.runtime.onMessage.addListener(function(Sylph) {
