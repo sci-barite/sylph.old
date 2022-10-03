@@ -36,7 +36,7 @@ chrome.runtime.onMessage.addListener((request, sender) => {
             }
          }
         XSnd.open('GET', // Probably better to replace it with POST at some point, but for now this works well.
-        'https://script.google.com/macros/s/AKfycbwH0P0CgQiOCriRefaqThP8UQQ20xDaWvTtR4_GKm_bfLsv2AXBsmpk-ko4faNq2q_v/exec?'+
+        'https://script.google.com/macros/s/AKfycbx-KXF3HHt1D9OzGsKWuI8i2eSilIzfpfU7j-Xq7-Gues5H5TtizhrKh3KP7j9Sa3pA/exec?'+
         'name='+NAME+'&pos='+POSITION // Now it can even be the bookmark's folder, as per the original idea!
         +'&skills='+SKILLS+'&eng='+ENGLISH+'&rate='+RATE+'&loc='+LOCATION+'&url='+LINK+'&more='+MORE,
         true);
