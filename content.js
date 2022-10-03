@@ -35,7 +35,9 @@ function SiftUpwork(url) {
         NAME = document.querySelectorAll(".d-inline")[0].innerText.slice(0,-1).split("\n")[1].trim();
         if (NAME.charAt(NAME.length -1) === " ") NAME = NAME.slice(0,-1);
         LOCATION = document.querySelectorAll(".d-inline-block")[3].innerText;
-        POSITION = document.querySelectorAll(".up-card")[3].innerText.split("\n")[1];
+        if (document.querySelectorAll(".up-card")[3].querySelector("em.break").innerText)
+            POSITION = document.querySelectorAll(".up-card")[3].querySelector("em.break").innerText;
+        else POSITION = document.querySelectorAll(".up-card")[3].innerText.split("\n")[1];
 
         SubSkills = document.querySelectorAll(".skills")[1].innerText.split("\n");
         for (i=0; i<SubSkills.length; i++) Sifted.push(' '+SubSkills[i]);
