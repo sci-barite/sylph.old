@@ -5,15 +5,22 @@
   "main": "content.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "build": "webpack --mode=production"
   },
   "author": "sci-barite",
   "license": "ISC",
   "dependencies": {
     "@types/chrome": "^0.0.196",
-    "types": "^0.1.1"
+    "save-dev": "^0.0.1-security",
+    "types": "^0.1.1",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
   },
   "devDependencies": {
+    "@types/glob": "^8.0.0",
+    "copy-webpack-plugin": "^11.0.0",
+    "glob": "^8.0.3",
+    "ts-loader": "^9.4.1",
     "typescript": "^4.8.4"
   }
 }
