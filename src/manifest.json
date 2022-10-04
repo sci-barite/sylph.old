@@ -35,7 +35,7 @@
         {
             "js": ["sift-djinni.js"],
             "run_at": "document_idle",
-            "matches": ["https://*djinni.co/home/inbox*"]
+            "matches": ["https://djinni.co/home/inbox*"]
         }
     ],
     "permissions": [
