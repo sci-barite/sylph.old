@@ -3,6 +3,7 @@
   "version": "1.5.2",
   "description": "First Chrome extension",
   "main": "content.js",
+  "sideEffects": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode=production"

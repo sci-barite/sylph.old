@@ -29,5 +29,8 @@ module.exports = {
                 force: true,
             }]
         })
-    ]
+    ],
+    optimization: {
+        minimize: false
+    }
 }

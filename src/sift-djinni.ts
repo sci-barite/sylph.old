@@ -1,5 +1,5 @@
 // The most straightforward of the three.
-
+/**
 function SiftDjinni(position) {
     NAME = (document.querySelector("#candidate_name") as HTMLElement).innerText;
     ENGLISH = (document.querySelector(".inbox-thread-candidate-info") as HTMLElement).innerText;
@@ -12,4 +12,4 @@ function SiftDjinni(position) {
     else POSITION = (document.querySelector(".page-header") as HTMLElement).innerText.substring(11).split("›")[0];
     LOCATION = (document.querySelector(".page-header") as HTMLElement).innerText.substring(11).split(', ')[2];
     LINK = document.URL;
-}
+} */

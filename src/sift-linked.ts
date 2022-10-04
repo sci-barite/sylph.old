@@ -1,5 +1,5 @@
 // It got much, much easier than the first version, but still a bit tricky sometimes.
-
+/**
 function SiftLinked(position) {
     var Sifted: Array<string> = [];
     for (var i=0; i<3; i++) {
@@ -25,4 +25,4 @@ function SiftLinked(position) {
     NAME = (document.querySelector(".text-heading-xlarge") as HTMLElement).innerText
     POSITION = position;
     LINK = document.URL;
-}
+}  */
