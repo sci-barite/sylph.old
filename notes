@@ -53,3 +53,21 @@ var subskills = collated.split(" · ");
 for (i=0; i<subskills.length; i++) {
     if (SKILLS.indexOf(subskills[i]) == -1) SKILLS.push(subskills[i]);
 }
+
+/** Independent injections for manifest
+{
+    "js": ["sift-linked.js"],
+    "run_at": "document_idle",
+    "matches": ["https://*.linkedin.com/in*"]
+},
+{
+    "js": ["sift-upwork.js"],
+    "run_at": "document_idle",
+    "matches": ["https://*.upwork.com/ab/applicants/*", "https://*.upwork.com/freelancers/*"]
+},
+{
+    "js": ["sift-djinni.js"],
+    "run_at": "document_idle",
+    "matches": ["https://djinni.co/home/inbox/*"]
+}
+ */
