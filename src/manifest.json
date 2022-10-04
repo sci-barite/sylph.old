@@ -16,26 +16,11 @@
     },
     "content_scripts": [
         {
-            "js": ["content.js"],
+            "js": ["content.js", "sift-linked.js", "sift-upwork.js", "sift-djinni.js"],
             "run_at": "document_idle",
             "matches": [
                 "https://*.linkedin.com/in*", "https://*.djinni.co/home/inbox*", "https://*.upwork.com/ab/applicants/*", "https://*.upwork.com/freelancers/*"
             ]
-        },
-        {
-            "js": ["sift-linked.js"],
-            "run_at": "document_idle",
-            "matches": ["https://*.linkedin.com/in*"]
-        },
-        {
-            "js": ["sift-upwork.js"],
-            "run_at": "document_idle",
-            "matches": ["https://*.upwork.com/ab/applicants/*", "https://*.upwork.com/freelancers/*"]
-        },
-        {
-            "js": ["sift-djinni.js"],
-            "run_at": "document_idle",
-            "matches": ["https://djinni.co/home/inbox/*"]
         }
     ],
     "permissions": [
