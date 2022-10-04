@@ -10,7 +10,7 @@ function SiftUpwork(url) {
         LOCATION = Container.querySelectorAll(".d-inline-block")[3].innerText;
         RATE = Container.querySelectorAll(".d-inline")[1].innerText.trim();
 
-        if (Container.querySelectorAll(".skills")[0]) {
+        if (Container.querySelectorAll(".skills")[0]) { // It's inconsistent: sometimes it's 0, sometimes 1. Length is key.
             SubSkills = Container.querySelectorAll(".skills")[0].innerText.split("\n");
             if (SubSkills.length > 20 && Container.querySelectorAll(".skills")[1]) 
                 SubSkills = Container.querySelectorAll(".skills")[1].innerText.split("\n");
