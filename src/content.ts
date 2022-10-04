@@ -1,5 +1,5 @@
 var [POSITION, LINK, NAME, RATE, SKILLS, ENGLISH, LOCATION, MORE] = ['Angular', '', 'NA', '', 'NA', 'NA', '', ''];
-
+/**
 function SiftLinked(position) {
     var Sifted: Array<string> = [];
     for (var i=0; i<3; i++) {
@@ -91,7 +91,7 @@ function SiftUpwork(url) {
         ENGLISH = (lists[1].querySelector("span.d-inline-block") as HTMLElement).innerText
     }
 }
-
+ */
 function SylphBack(response, status) {
     if (status == 200) {
         var STATUS = "✅ ";

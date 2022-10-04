@@ -10,6 +10,7 @@ module.exports = {
     output: {
         filename: "[name].js",
         path: path.resolve(__dirname, "dist"),
+        module: true
     },
     module: {
         rules: [
@@ -31,6 +32,11 @@ module.exports = {
         })
     ],
     optimization: {
-        minimize: false
+        minimize: false,
+        usedExports: true,
+        concatenateModules: true
+    },
+    experiments: {
+        outputModule: true
     }
 }

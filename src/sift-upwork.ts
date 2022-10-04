@@ -1,5 +1,5 @@
 // The longest of the three, because it can do two different kinds of pages.
-/**
+
 function SiftUpwork(url) {
     LINK = url;
     var Sifted: Array<string> = [];
@@ -49,4 +49,4 @@ function SiftUpwork(url) {
         const lists = document.querySelectorAll(".list-unstyled");
         ENGLISH = (lists[1].querySelector("span.d-inline-block") as HTMLElement).innerText
     }
-}  */
+} 

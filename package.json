@@ -1,6 +1,6 @@
 {
   "name": "sylph",
-  "version": "1.5.2",
+  "version": "1.5.6",
   "description": "First Chrome extension",
   "main": "content.js",
   "sideEffects": true,
