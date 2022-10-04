@@ -11,7 +11,7 @@
   "author": "sci-barite",
   "license": "ISC",
   "dependencies": {
-    "@types/chrome": "^0.0.196",
+    "@types/chrome": "0.0.196",
     "save-dev": "^0.0.1-security",
     "types": "^0.1.1",
     "webpack": "^5.74.0",
